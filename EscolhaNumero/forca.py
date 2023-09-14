@@ -1,16 +1,33 @@
+# from faker import Faker
+import random
+
 def jogar():
     print('****************************************************')
     print('************ Bem vindo ao jogo de forca ************')
     print('****************************************************')
 
     # Código aqui
-    word = "funicular"
-    word = word.upper()
-    empty_spaces = []
+    # Aqui temos um gerador automático
+    # fake = Faker('pt_BR')
+    # word = fake.state()
+    
+    # Aqui temos uma palavra fixa
+    # word = "banana" 
 
-    for letra in word:
-        empty_spaces.append('_')
+    arquivo = open('./palavras.txt', 'r')
+    palavras_disponiveis = arquivo.readlines()
+    
+    arquivo.close()
+    
+    numero_aleatorio = random.randrange(0, len(palavras_disponiveis))
+    word = palavras_disponiveis[numero_aleatorio].upper().strip()    
 
+    # empty_spaces = []
+    # for letra in word:
+    # empty_spaces.append('_' for letra in word) 
+    empty_spaces = ['_' for letra in word] #A lista é forma colocando um caracter para cada letra da palavra
+    #  Isso aqui é conhecido como List Comprehension
+    
     hang = False
     win_word = False
     chances = 6
