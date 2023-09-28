@@ -20,16 +20,20 @@ class Programa:
         self._likes += 1
 
 class Filme(Programa):
-    def __init__(self, nome, ano, duracao):
+    def __init__(self, nome: str, ano: int, duracao: int):
         super().__init__(nome, ano) # Utiliza o construtor da classe mãe para criar um objeto novo
         self.duracao = duracao
         
 
 class Serie(Programa):
-    def __init__(self, nome, ano, temporadas):
+    def __init__(self, nome: str, ano: int, temporadas: int):
         super().__init__(nome, ano) # Utiliza o construtor da classe mãe para criar um objeto novo
         self.temporadas = temporadas
     
+class Playlist:
+    def __init__(self, nome, programas):
+        self._nome = nome
+        self._programas = programas
 
 totoro = Filme('meu vizinho totoro', 1995, 75)
 totoro.dar_like()
@@ -41,3 +45,11 @@ print(f'Nome: {totoro.nome}\nAno: {totoro.ano}\nduracao: {totoro.duracao}\nLikes
 bones = Serie('bones', 2006, 14)
 bones.dar_like()
 print(f'Nome: {bones.nome}\nAno: {bones.ano}\ntemporadas: {bones.temporadas}\nLikes: {bones.likes}')
+
+meus_filmes_e_series = [totoro, bones]
+minha_playlist = Playlist('Minha Playlist', meus_filmes_e_series)
+print(minha_playlist)
+for programa in meus_filmes_e_series:
+    detalhes = programa.duracao if hasattr (programa, 'duracao') else programa.temporadas
+
+    print(f'NOME: {programa.nome}\nLIKES: {programa.likes}\nDETALHES: {detalhes}')
